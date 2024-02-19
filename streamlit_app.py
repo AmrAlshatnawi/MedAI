@@ -52,11 +52,14 @@ def run():
     user_input = st.text_input("You:", "")
 
     if st.button("Chat") or user_input:
-        if user_input:
-            with st.spinner(text="ChatGPT is writing...."):
-                st.write("ChatGPT:", chat_with_gpt(user_input, model_version))
+        if model_version == "Please choose a Model First":
+            st.write("please choose a model")
         else:
-            st.write("Please enter something.")
+            if user_input:
+                with st.spinner(text="ChatGPT is writing...."):
+                    st.write("ChatGPT:", chat_with_gpt(user_input, model_version))
+            else:
+                st.write("Please enter something.")
 
 if __name__ == "__main__":
     run()
