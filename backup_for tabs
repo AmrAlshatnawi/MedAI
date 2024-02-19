@@ -10,6 +10,13 @@ from openai import OpenAI
 
 LOGGER = get_logger(__name__)
 
+st.set_page_config(
+        page_title="FAM_MedAI",
+        page_icon="🤖",
+    )
+st.title("🤖MedAI")
+home_tab, MA_tab, tool2_tab = st.tabs(["Welcome", "Medical Assistance Chat", "Tool 2"])
+
 # Read OpenAI API key
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 # Check if key was retrieved 
@@ -25,14 +32,23 @@ def clear_session_state_except_password_correct():
         # If the key is not 'password_correct', delete it from the session_state
         if key != 'password_correct':
             del st.session_state[key]  
-def run():
-    st.set_page_config(
-        page_title="ChatGPT Medical Assistance",
-        page_icon="🤖",
-    )
 
-    # Streamlit app code for ChatGPT integration
-    st.title("Medical Assistance")
+with home_tab:
+    st.header("""🌟 Welcome to Our Web Application – Your Gateway to Informed Health Decisions! 🌟
+
+Embark on a journey of discovery and empowerment with our platform, where advanced technology meets practical healthcare solutions. We’ve meticulously assembled a set of tools designed to enhance your understanding and management of health information, making it more accessible and actionable than ever before.
+
+Introducing Our Medical Assistance Chatbot – At the heart of our platform lies a cutting-edge chatbot powered by OpenAI's ChatGPT. This intelligent assistant is here to provide you with medical insights, answer your health-related queries, and guide you through the vast ocean of healthcare information with ease and precision. It’s like having a knowledgeable companion by your side, ready to assist you 24/7.
+
+Explore Our Interactive Health Dashboard – Alongside our chatbot, we offer an immersive dashboard that visualizes critical health data across the US. Whether you're interested in tracking COVID-19 trends or exploring other health indicators, our dashboard brings data to life through engaging maps and visualizations. It’s a powerful tool for anyone looking to gain insights into health patterns, making complex data understandable at a glance.
+
+Our mission is to provide you with valuable tools and information that support your health and wellness journey. Whether you’re seeking medical advice, researching health trends, or simply curious about the latest data, our web application is designed to meet your needs.
+
+Welcome, and let’s navigate the future of healthcare together.""")
+
+def run():
+        # Streamlit app code for ChatGPT integration
+    st.title("⚕️Medical Assistance")
 
     # ChatGPT Warning
     with st.expander("⚠️ Important Notice on Usage"):
@@ -97,8 +113,9 @@ def run():
     clear_memory = st.sidebar.button("Clear Chat")
     if clear_memory:
         clear_session_state_except_password_correct()
-        st.session_state["last_response"] = "GPT: Hi there, hope you're doing great! How can I help you?"        
+        st.session_state["last_response"] = "GPT: Hi there, hope you're doing great! How can I help you?"
 
-if __name__ == "__main__":
-    run()
 
+with MA_tab:
+    if __name__ == "__main__":
+        run()
