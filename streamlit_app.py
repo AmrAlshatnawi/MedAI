@@ -15,7 +15,7 @@ if not OPENAI_API_KEY:
 openai_client = OpenAI(api_key=OPENAI_API_KEY)
 # function to send a prompt to the GPT model
 def chat_with_gpt(prompt, model):
-    # Create a streaming response
+    # Create a streaming responsede
     stream = openai_client.chat.completions.create(
         model= model,
         messages=[{"role": "user", "content": prompt}],
