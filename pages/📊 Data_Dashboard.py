@@ -1,5 +1,5 @@
 import streamlit as st
-from authentication import *
+from functions import *
 
 # set page icon and tab title
 st.set_page_config(
@@ -15,6 +15,6 @@ if 'authenticated' not in st.session_state:
 if not st.session_state['authenticated']:
     authenticate()
 # Show page if user is authenticated
-if st.session_state['authenticated']:
-    #page content start here 
+if st.session_state['authenticated']: 
+    # #page content start here 
     st.write("Page is still under development.")
