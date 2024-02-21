@@ -1,30 +1,44 @@
 import streamlit as st
-from streamlit.logger import get_logger
-from langchain.chains import LLMChain
-from langchain.llms import openai
-from langchain.chat_models import ChatOpenAI
-from langchain.memory import ConversationBufferMemory
-from langchain.memory.chat_message_histories import StreamlitChatMessageHistory
-from langchain.prompts import PromptTemplate 
-from openai import OpenAI
+import time
+from authentication import *
 
-LOGGER = get_logger(__name__)
+# set page icon and tab title
 st.set_page_config(
-        page_title="MedAI",
+        page_title="MedAI - Home",
         page_icon="🤖",
     )
+# Make page content larger (zoom)
+st.markdown("""<style>body {zoom: 1.5;  /* Adjust this value as needed */}</style>""", unsafe_allow_html=True)
 
-st.title("🤖MedAI")
+# check if authenticated is in session state 
+if 'authenticated' not in st.session_state:
+    st.session_state['authenticated'] = False
 
-    
+# check if user is authenticated
+if not st.session_state['authenticated']:
+    authenticate()
+# Show page if user is authenticated
+if st.session_state['authenticated']:
 
-# Read OpenAI API key
-OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
-# Check if key was retrieved 
-if not OPENAI_API_KEY:
-    raise ValueError("OpenAI API key is not set. Please set the OPENAI_API_KEY environment variable.")
+    # page content starts here
+    st.title("🤖 Welcome to MedAI")
 
-
-st.header("""🌟 Welcome to Our Web Application – Your Gateway to Informed Health Decisions! 🌟
-
-""")
+    # Welcome message
+    st.markdown("""
+        <div style="
+            border: 1px solid #ffffff;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            background-color: #ffffff;
+            color: #000000;
+            ">
+            <h2 style="color: #000000;text-align: center;">🌟 Welcome to MedAI – Your Smart Health Companion! 🌟</h2>
+            <p>Dive right into our <strong>AI-powered Medical Assistance Chat</strong> for instant insights and support on health queries. Or, explore our <strong>Dynamic Data Tools</strong> for a visual snapshot of vital health trends and data insights.</p>
+            <p>
+            Get started now and unlock smarter, data-driven health decisions today!
+        </p>
+        <p><b>Access our tools using the side navigation.</b> </p>
+                        
+        </div>
+        """, unsafe_allow_html=True)
