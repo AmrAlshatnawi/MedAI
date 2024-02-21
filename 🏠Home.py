@@ -1,6 +1,5 @@
 import streamlit as st
-import time
-from authentication import *
+from functions import *
 
 # set page icon and tab title
 st.set_page_config(
