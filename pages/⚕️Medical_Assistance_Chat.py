@@ -44,7 +44,7 @@ if st.session_state['authenticated']:
                             """)
 
         # Dropdown menu for model selection
-        model_version = st.selectbox("Choose GPT Model", ["Please choose a Model First", "gpt-3.5-turbo", "gpt-4"])
+        model_version = st.selectbox("Choose GPT Model", ["Please choose a model", "gpt-3.5-turbo", "gpt-4"])
     with col2:
         st.image("nova_image.png", width=250)
                 
@@ -99,8 +99,8 @@ if st.session_state['authenticated']:
     prompt = PromptTemplate(input_variables=["history", "human_input"], template= health_template)
     llm_chain = LLMChain(llm=ChatOpenAI(openai_api_key = OPENAI_API_KEY, model = model_version), prompt=prompt, memory=memory)
 
-    if model_version == "Please choose a Model First":
-        st.info("Please choose a model")
+    if model_version == "Please choose a model":
+        st.info("Please choose a model to proceed")
     else:
 
         for msg in msgs.messages:
