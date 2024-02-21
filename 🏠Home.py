@@ -21,7 +21,7 @@ if not st.session_state['authenticated']:
 if st.session_state['authenticated']:
 
     # page content starts here
-    st.title("🤖 Welcome to MedAI")
+    st.title("🤖 MedAI")
 
     # Welcome message
     st.markdown("""
