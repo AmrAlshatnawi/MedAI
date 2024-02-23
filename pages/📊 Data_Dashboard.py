@@ -19,6 +19,3 @@ if st.session_state['authenticated']:
     # #page content start here 
     st.write("Page is still under development.")
     st.write("More to come by Farhan.")
-
-git config --global user.email "farhan.mk21@gmail.com"
-git config --global user.name "Farhan Masood"
