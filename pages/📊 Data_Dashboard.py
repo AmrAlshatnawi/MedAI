@@ -1,3 +1,4 @@
+import numpy as np
 import streamlit as st
 from functions import *
 
@@ -18,4 +19,4 @@ if not st.session_state['authenticated']:
 if st.session_state['authenticated']: 
     # #page content start here 
     st.write("Page is still under development.")
-    st.write("More to come by Farhan.")
+    uploaded_file = st.file_uploader("Please upload a csv file.")
