@@ -40,8 +40,18 @@ if st.session_state['authenticated']:
         option_y = st.selectbox(
         'Select y-variable',
         numeric_cols)
+
+        option_cat = st.selectbox(
+        'Select categorical variable for distribution.',
+        text_cols    
+        )
         
         st.write(f'You selected: {option_y} against {option_x}')
 
+        st.write(f"Here is a scatter plot of {option_y} vs {option_x} in your given dataset:")
         fig = px.scatter(df,x = option_x, y = option_y)
         st.plotly_chart(fig, theme="streamlit", use_container_width=True)
+        
+        st.write("Here is a histogram for the selected categorical variable:")
+        fig_2 = px.histogram(df, x= option_cat)
+        st.plotly_chart(fig_2,theme="streamlit", use_container_width=True)

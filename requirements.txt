@@ -3,4 +3,4 @@ pandas
 streamlit
 openai
 langchain
-csv
+plotly.express
