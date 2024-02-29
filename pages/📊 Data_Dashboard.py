@@ -1,3 +1,4 @@
+import plotly.express as px
 import pandas as pd
 import numpy as np
 import streamlit as st
@@ -41,3 +42,6 @@ if st.session_state['authenticated']:
         numeric_cols)
         
         st.write(f'You selected: {option_y} against {option_x}')
+
+        fig = px.scatter(df,x = option_x, y = option_y)
+        st.plotly_chart(fig, theme="streamlit", use_container_width=True)
