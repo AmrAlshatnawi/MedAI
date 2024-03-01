@@ -4,3 +4,4 @@ streamlit
 openai
 langchain
 plotly
+statsmodels
