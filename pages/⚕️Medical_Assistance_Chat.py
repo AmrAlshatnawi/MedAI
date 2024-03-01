@@ -13,6 +13,7 @@ from pathlib import Path
 st.set_page_config(
         page_title="MedAI- AI Chat",
         page_icon="⚕️",
+        layout="wide"
     )
 
 
