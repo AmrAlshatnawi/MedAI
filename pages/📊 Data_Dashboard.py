@@ -1,3 +1,4 @@
+import statsmodels.api as sm
 import plotly.express as px
 import pandas as pd
 import numpy as np
@@ -34,24 +35,28 @@ if st.session_state['authenticated']:
             st.dataframe(df)
         list_of_cols = list(df.columns)
         option_x = st.selectbox(
-        'Select x-variable',
-        numeric_cols)
+        'Select x-variable for scatter plot.',
+        numeric_cols, index = None, placeholder="Choose an option"
+        )
 
         option_y = st.selectbox(
-        'Select y-variable',
-        numeric_cols)
+        'Select y-variable for scatter plot.',
+        numeric_cols, index = None, placeholder="Choose an option"
+        )
 
         option_cat = st.selectbox(
         'Select categorical variable for distribution.',
-        text_cols    
+        text_cols, index = None, placeholder="Choose an option"    
         )
+        if option_x is not None and option_y is not None:
+            
+            st.write(f"Here is a scatter plot of {option_y} vs {option_x} in your given dataset:")
+            fig = px.scatter(df,x = option_x, y = option_y, trendline = 'ols')
+            st.plotly_chart(fig, theme="streamlit", use_container_width=True)
         
-        st.write(f'You selected: {option_y} against {option_x}')
+        if option_cat is not None:
+            st.write("Here is a histogram for the selected categorical variable:")
+            fig_2 = px.histogram(df, x = option_cat)
+            st.plotly_chart(fig_2,theme="streamlit", use_container_width=True)
 
-        st.write(f"Here is a scatter plot of {option_y} vs {option_x} in your given dataset:")
-        fig = px.scatter(df,x = option_x, y = option_y)
-        st.plotly_chart(fig, theme="streamlit", use_container_width=True)
         
-        st.write("Here is a histogram for the selected categorical variable:")
-        fig_2 = px.histogram(df, x= option_cat)
-        st.plotly_chart(fig_2,theme="streamlit", use_container_width=True)
