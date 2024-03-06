@@ -21,7 +21,9 @@ if not st.session_state['authenticated']:
 # Show page if user is authenticated
 if st.session_state['authenticated']: 
     # #page content start here 
+    st.title('📊 Data Viewer')
     uploaded_file = st.file_uploader("Please upload a csv file.")
+    
     with st.sidebar:
         data_selection = st.selectbox("Demo Datasets", options = ["Please select a demo dataset", "hersdataset.csv"])
         if data_selection == "hersdataset.csv":
@@ -45,8 +47,8 @@ if st.session_state['authenticated']:
         df = pd.read_csv(uploaded_file)
 
 
-        if st.button("Press to change column header"):
-            name_changer()
+    #    if st.button("Press to change column header"):
+    #        name_changer()
 
 
         numeric_df = df.select_dtypes(['float','int'])
