@@ -1,4 +1,9 @@
 # MedAI
-## Medical AI and Data  
-## This repo is still under development
-Link to the App [https://med-ai-data.streamlit.app/](https://med-ai-data.streamlit.app/)
+## MedAI is an application that currently has two tools:
+
+#### Medical Assistance: Using LLMs, this tool provides the user with answers to health-related questions.
+#### Data Viewer: This tool allows users to quickly get insights about their data.
+
+#### We plan to continue making improvements, as well as adding new tools to this application. 
+
+#### Link to the App [https://med-ai-data.streamlit.app/](https://med-ai-data.streamlit.app/)
