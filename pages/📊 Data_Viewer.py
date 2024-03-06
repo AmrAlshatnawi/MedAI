@@ -84,10 +84,10 @@ if uploaded_file is not None:
     numeric_cols, index = None, placeholder="Choose an option.."
     )
 
-    #dropdown to select a variable among the categorical variables for histogram
-    option_cat = st.selectbox(
-    'Select categorical variable for distribution.',
-    text_cols, index = None, placeholder="Choose an option.."    
+    #dropdown to select a variable among all variables for histogram
+    option_hist = st.selectbox(
+    'Select variable for distribution.',
+    list(df.columns), index = None, placeholder="Choose an option.."    
     )
     #scatterplot is only displayed if user selects required variables
     if option_x is not None and option_y is not None:
@@ -100,11 +100,11 @@ if uploaded_file is not None:
         st.plotly_chart(fig, theme=None, use_container_width=True)
     
     #histogram is only displayed if user selects required variable
-    if option_cat is not None:
+    if option_hist is not None:
         #subheader that displays to indicate where the histogram is
-        st.subheader(f":blue[Histogram showing the distribution of {option_cat}]", divider = 'rainbow')
-        #plotly histogram that takes the df and user selected categorical variable to create a histogram
-        fig_2 = px.histogram(df, x = option_cat)
+        st.subheader(f":blue[Histogram showing the distribution of {option_hist}]", divider = 'rainbow')
+        #plotly histogram that takes the df and user selected variable to create a histogram
+        fig_2 = px.histogram(df, x = option_hist)
         #st.plotly_chart displays the histogram in streamlit
         st.plotly_chart(fig_2,theme=None, use_container_width=True)
         
