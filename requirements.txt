@@ -4,4 +4,4 @@ streamlit
 openai
 langchain
 plotly.express
-statsmodels.api
+statsmodels
