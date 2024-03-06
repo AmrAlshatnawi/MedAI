@@ -24,13 +24,13 @@ if st.session_state['authenticated']:
     uploaded_file = st.file_uploader("Please upload a csv file.")
     if uploaded_file is not None:
         def name_changer():
-            option_change = st.selectbox(
-            'Select variable to change name of.',
-            list(df.columns), index = None, placeholder = "Choose an option.."
-            )
-            new_name = st.text_input("Enter new name of variable selected.")
+            if st.button('Select variable') and st.session_state:
+                option_change = st.selectbox(
+                'Select variable to change name of.',
+                list(df.columns), index = None, placeholder = "Choose an option.."
+                )
+                new_name = st.text_input("Enter new name of variable selected.")
             if st.button("Change") and option_change is not None and new_name is not None:
-                #df.rename(columns={option_change : new_name})
                 df.rename(columns={option_change : new_name}, inplace = True)
                 new_name = ''
         
