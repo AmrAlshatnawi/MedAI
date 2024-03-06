@@ -1,7 +1,6 @@
 import statsmodels.api as sm
 import plotly.express as px
 import pandas as pd
-import numpy as np
 import streamlit as st
 from functions import *
 
@@ -24,29 +23,41 @@ if st.session_state['authenticated']:
     # #page content start here 
     uploaded_file = st.file_uploader("Please upload a csv file.")
     if uploaded_file is not None:
+        def name_changer():
+            option_change = st.selectbox(
+            'Select variable to change name of.',
+            list(df.columns), index = None, placeholder = "Choose an option.."
+            )
+            new_name = st.text_input("Enter new name of variable selected.")
+            if st.button("Change") and option_change is not None and new_name is not None:
+                #df.rename(columns={option_change : new_name})
+                df.rename(columns={option_change : new_name}, inplace = True)
+                new_name = ''
+        
         df = pd.read_csv(uploaded_file)
+        if st.button("Press to change column header"):
+            name_changer()
         numeric_df = df.select_dtypes(['float','int'])
         numeric_cols = numeric_df.columns
 
         text_df = df.select_dtypes(['object'])
         text_cols = text_df.columns
-
         with st.expander("Data Preview"):
             st.dataframe(df)
         list_of_cols = list(df.columns)
         option_x = st.selectbox(
         'Select x-variable for scatter plot.',
-        numeric_cols, index = None, placeholder="Choose an option"
+        numeric_cols, index = None, placeholder="Choose an option.."
         )
 
         option_y = st.selectbox(
         'Select y-variable for scatter plot.',
-        numeric_cols, index = None, placeholder="Choose an option"
+        numeric_cols, index = None, placeholder="Choose an option.."
         )
 
         option_cat = st.selectbox(
         'Select categorical variable for distribution.',
-        text_cols, index = None, placeholder="Choose an option"    
+        text_cols, index = None, placeholder="Choose an option.."    
         )
         if option_x is not None and option_y is not None:
             
@@ -58,5 +69,4 @@ if st.session_state['authenticated']:
             st.write("Here is a histogram for the selected categorical variable:")
             fig_2 = px.histogram(df, x = option_cat)
             st.plotly_chart(fig_2,theme="streamlit", use_container_width=True)
-
         
