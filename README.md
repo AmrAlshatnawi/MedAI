@@ -1,4 +1,5 @@
 # MedAI
+[![forthebadge](https://forthebadge.com/images/featured/featured-built-with-love.svg)](https://forthebadge.com)
 ## MedAI is an application that currently has two tools:
 
 #### Medical Assistance: Using LLMs, this tool provides the user with answers to health-related questions.
